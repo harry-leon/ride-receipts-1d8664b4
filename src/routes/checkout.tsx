@@ -22,7 +22,7 @@ import {
   useWashStore,
 } from "@/lib/wash-store";
 import { toast } from "sonner";
-import { PageHeader, TierBadge } from "./index";
+import { PageHeader, TierBadge } from "@/components/shared";
 
 export const Route = createFileRoute("/checkout")({
   component: CheckoutPage,

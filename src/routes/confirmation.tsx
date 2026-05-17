@@ -3,7 +3,7 @@ import { Check, Gift, Printer, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { fmtMoney, useWashStore } from "@/lib/wash-store";
 import { toast } from "sonner";
-import { PageHeader, TierBadge } from "./index";
+import { PageHeader, TierBadge } from "@/components/shared";
 
 export const Route = createFileRoute("/confirmation")({
   component: ConfirmationPage,

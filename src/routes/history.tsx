@@ -18,7 +18,7 @@ import {
   SheetDescription,
 } from "@/components/ui/sheet";
 import { Transaction, fmtMoney, useWashStore } from "@/lib/wash-store";
-import { PageHeader, TierBadge } from "./index";
+import { PageHeader, TierBadge } from "@/components/shared";
 
 export const Route = createFileRoute("/history")({
   component: HistoryPage,
