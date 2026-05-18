@@ -9,89 +9,68 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as VerifyRouteImport } from './routes/verify'
-import { Route as VehiclesRouteImport } from './routes/vehicles'
-import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminTiersRouteImport } from './routes/admin.tiers'
+import { Route as AdminPromotionsRouteImport } from './routes/admin.promotions'
+import { Route as AdminAuditRouteImport } from './routes/admin.audit'
 
-const VerifyRoute = VerifyRouteImport.update({
-  id: '/verify',
-  path: '/verify',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const VehiclesRoute = VehiclesRouteImport.update({
-  id: '/vehicles',
-  path: '/vehicles',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProfileRoute = ProfileRouteImport.update({
-  id: '/profile',
-  path: '/profile',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminTiersRoute = AdminTiersRouteImport.update({
+  id: '/admin/tiers',
+  path: '/admin/tiers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminPromotionsRoute = AdminPromotionsRouteImport.update({
+  id: '/admin/promotions',
+  path: '/admin/promotions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAuditRoute = AdminAuditRouteImport.update({
+  id: '/admin/audit',
+  path: '/admin/audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/profile': typeof ProfileRoute
-  '/vehicles': typeof VehiclesRoute
-  '/verify': typeof VerifyRoute
+  '/admin/audit': typeof AdminAuditRoute
+  '/admin/promotions': typeof AdminPromotionsRoute
+  '/admin/tiers': typeof AdminTiersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/profile': typeof ProfileRoute
-  '/vehicles': typeof VehiclesRoute
-  '/verify': typeof VerifyRoute
+  '/admin/audit': typeof AdminAuditRoute
+  '/admin/promotions': typeof AdminPromotionsRoute
+  '/admin/tiers': typeof AdminTiersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/profile': typeof ProfileRoute
-  '/vehicles': typeof VehiclesRoute
-  '/verify': typeof VerifyRoute
+  '/admin/audit': typeof AdminAuditRoute
+  '/admin/promotions': typeof AdminPromotionsRoute
+  '/admin/tiers': typeof AdminTiersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/profile' | '/vehicles' | '/verify'
+  fullPaths: '/' | '/admin/audit' | '/admin/promotions' | '/admin/tiers'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/profile' | '/vehicles' | '/verify'
-  id: '__root__' | '/' | '/profile' | '/vehicles' | '/verify'
+  to: '/' | '/admin/audit' | '/admin/promotions' | '/admin/tiers'
+  id: '__root__' | '/' | '/admin/audit' | '/admin/promotions' | '/admin/tiers'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ProfileRoute: typeof ProfileRoute
-  VehiclesRoute: typeof VehiclesRoute
-  VerifyRoute: typeof VerifyRoute
+  AdminAuditRoute: typeof AdminAuditRoute
+  AdminPromotionsRoute: typeof AdminPromotionsRoute
+  AdminTiersRoute: typeof AdminTiersRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/verify': {
-      id: '/verify'
-      path: '/verify'
-      fullPath: '/verify'
-      preLoaderRoute: typeof VerifyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/vehicles': {
-      id: '/vehicles'
-      path: '/vehicles'
-      fullPath: '/vehicles'
-      preLoaderRoute: typeof VehiclesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/profile': {
-      id: '/profile'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof ProfileRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -99,14 +78,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/tiers': {
+      id: '/admin/tiers'
+      path: '/admin/tiers'
+      fullPath: '/admin/tiers'
+      preLoaderRoute: typeof AdminTiersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/promotions': {
+      id: '/admin/promotions'
+      path: '/admin/promotions'
+      fullPath: '/admin/promotions'
+      preLoaderRoute: typeof AdminPromotionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/audit': {
+      id: '/admin/audit'
+      path: '/admin/audit'
+      fullPath: '/admin/audit'
+      preLoaderRoute: typeof AdminAuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ProfileRoute: ProfileRoute,
-  VehiclesRoute: VehiclesRoute,
-  VerifyRoute: VerifyRoute,
+  AdminAuditRoute: AdminAuditRoute,
+  AdminPromotionsRoute: AdminPromotionsRoute,
+  AdminTiersRoute: AdminTiersRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

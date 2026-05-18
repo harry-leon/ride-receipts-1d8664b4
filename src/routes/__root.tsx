@@ -9,9 +9,9 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
-import { PortalStoreProvider } from "@/lib/portal-store";
+import { LoyaltyStoreProvider } from "@/lib/loyalty-store";
 import { Toaster } from "@/components/ui/sonner";
-import { PortalShell } from "@/components/portal-shell";
+import { LoyaltyShell } from "@/components/loyalty-shell";
 
 function NotFoundComponent() {
   return (
@@ -116,10 +116,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <PortalStoreProvider>
-        <PortalShell />
+      <LoyaltyStoreProvider>
+        <LoyaltyShell />
         <Toaster richColors position="top-right" />
-      </PortalStoreProvider>
+      </LoyaltyStoreProvider>
     </QueryClientProvider>
   );
 }
