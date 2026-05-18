@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminTiersRouteImport } from './routes/admin.tiers'
+import { Route as AdminPromotionsRouteImport } from './routes/admin.promotions'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,30 +23,39 @@ const AdminTiersRoute = AdminTiersRouteImport.update({
   path: '/admin/tiers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminPromotionsRoute = AdminPromotionsRouteImport.update({
+  id: '/admin/promotions',
+  path: '/admin/promotions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin/promotions': typeof AdminPromotionsRoute
   '/admin/tiers': typeof AdminTiersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin/promotions': typeof AdminPromotionsRoute
   '/admin/tiers': typeof AdminTiersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin/promotions': typeof AdminPromotionsRoute
   '/admin/tiers': typeof AdminTiersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin/tiers'
+  fullPaths: '/' | '/admin/promotions' | '/admin/tiers'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin/tiers'
-  id: '__root__' | '/' | '/admin/tiers'
+  to: '/' | '/admin/promotions' | '/admin/tiers'
+  id: '__root__' | '/' | '/admin/promotions' | '/admin/tiers'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminPromotionsRoute: typeof AdminPromotionsRoute
   AdminTiersRoute: typeof AdminTiersRoute
 }
 
@@ -65,11 +75,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminTiersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/promotions': {
+      id: '/admin/promotions'
+      path: '/admin/promotions'
+      fullPath: '/admin/promotions'
+      preLoaderRoute: typeof AdminPromotionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminPromotionsRoute: AdminPromotionsRoute,
   AdminTiersRoute: AdminTiersRoute,
 }
 export const routeTree = rootRouteImport
