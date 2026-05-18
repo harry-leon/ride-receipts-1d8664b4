@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminTiersRouteImport } from './routes/admin.tiers'
 import { Route as AdminPromotionsRouteImport } from './routes/admin.promotions'
+import { Route as AdminAuditRouteImport } from './routes/admin.audit'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,33 +29,42 @@ const AdminPromotionsRoute = AdminPromotionsRouteImport.update({
   path: '/admin/promotions',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminAuditRoute = AdminAuditRouteImport.update({
+  id: '/admin/audit',
+  path: '/admin/audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin/audit': typeof AdminAuditRoute
   '/admin/promotions': typeof AdminPromotionsRoute
   '/admin/tiers': typeof AdminTiersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin/audit': typeof AdminAuditRoute
   '/admin/promotions': typeof AdminPromotionsRoute
   '/admin/tiers': typeof AdminTiersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin/audit': typeof AdminAuditRoute
   '/admin/promotions': typeof AdminPromotionsRoute
   '/admin/tiers': typeof AdminTiersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin/promotions' | '/admin/tiers'
+  fullPaths: '/' | '/admin/audit' | '/admin/promotions' | '/admin/tiers'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin/promotions' | '/admin/tiers'
-  id: '__root__' | '/' | '/admin/promotions' | '/admin/tiers'
+  to: '/' | '/admin/audit' | '/admin/promotions' | '/admin/tiers'
+  id: '__root__' | '/' | '/admin/audit' | '/admin/promotions' | '/admin/tiers'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminAuditRoute: typeof AdminAuditRoute
   AdminPromotionsRoute: typeof AdminPromotionsRoute
   AdminTiersRoute: typeof AdminTiersRoute
 }
@@ -82,11 +92,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminPromotionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/audit': {
+      id: '/admin/audit'
+      path: '/admin/audit'
+      fullPath: '/admin/audit'
+      preLoaderRoute: typeof AdminAuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminAuditRoute: AdminAuditRoute,
   AdminPromotionsRoute: AdminPromotionsRoute,
   AdminTiersRoute: AdminTiersRoute,
 }
