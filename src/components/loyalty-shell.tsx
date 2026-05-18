@@ -3,8 +3,9 @@ import { Sparkles, Gift, Settings2, Tags, History, User2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLoyalty } from "@/lib/loyalty-store";
 
-const customerNav = [{ to: "/", label: "Rewards Hub", icon: Gift, exact: true }];
-const adminNav = [
+type NavItem = { to: string; label: string; icon: typeof Gift; exact?: boolean };
+const customerNav: NavItem[] = [{ to: "/", label: "Rewards Hub", icon: Gift, exact: true }];
+const adminNav: NavItem[] = [
   { to: "/admin/tiers", label: "Tier Rules", icon: Settings2 },
   { to: "/admin/promotions", label: "Promotions", icon: Tags },
   { to: "/admin/audit", label: "Audit Log", icon: History },
